@@ -10,7 +10,7 @@ QuoteVotes = {}
 class QuoteCounter < Sinatra::Base
   post '/add_quote' do
     quote = params[:quote]
-    QuoteVotes[quote] = true
+    QuoteVotes[quote] = 1
     return "ok"
   end
 
@@ -22,7 +22,9 @@ class QuoteCounter < Sinatra::Base
 
   get '/vote' do
     quote = params[:quote]
-    return QuoteVotes[quote]
+    #status 200
+    #body   QuoteVotes[quote].to_s
+    QuoteVotes[quote].to_s
   end
 
   get '/top_quote' do

@@ -52,7 +52,7 @@ class CounterAppTest < Minitest::Test
     q = "If you want to build a ship, don't drum up people to collect wood and don't assign them tasks and work, but rather teach them to long for the endless immensity of the sea."
     QuoteVotes[q] = 13
 
-    response = get '/vote', q: q
+    response = get '/vote', quote: q
 
     assert_equal 200, response.status
     assert_equal "13", response.body
@@ -91,7 +91,7 @@ class CounterAppTest < Minitest::Test
     QuoteVotes["It is nobler to declare oneself wrong than to insist on being right - especially when one is right."] = 7
     QuoteVotes["Give me six hours to chop down a tree and I will spend the first four sharpening the axe."] = 6
 
-    response = get '/top_quote/hours'
+    response = get '/top_quote', needle: 'hours'
     assert_equal 200, response.status
 
     quote = JSON.parse response.body
